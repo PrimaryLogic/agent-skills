@@ -11,7 +11,7 @@ license: Proprietary
 compatibility: Requires internet access and HTTPS calls with Authorization bearer headers.
 metadata:
   author: primary-logic
-  version: "1.5"
+  version: "1.6"
 ---
 
 # Primary Logic External API
@@ -44,7 +44,9 @@ Activate this skill when the user asks for any of:
 ## Hard Rules
 - Only call read-only GET endpoints under /v1.
 - Never fabricate data; all claims must map to API responses.
-- Data is org-scoped; if records are missing, org visibility may be the cause.
+- Access is user-entitlement scoped to the API key creator; if calls fail with billing errors,
+  key-owner subscription status is usually the cause.
+- Data visibility is org-scoped; if records are missing, org source visibility may be the cause.
 - If an API call fails, report status, error code or message, and a concrete next step.
 - Use absolute timestamps in outputs when the user asks about recent windows.
 - Do not claim market prices, positions, or execution events unless explicitly present in the API data.
@@ -122,6 +124,11 @@ curl -s \
   -H "Authorization: Bearer <PRIMARYLOGIC_API_KEY>" \
   "https://primarylogic--pulse-backend-external-api-app.modal.run/v1/health"
 ```
+
+## Billing Troubleshooting
+- If `/v1/health` returns `402`, check key-owner subscription entitlement first (user-level access),
+  then confirm the key is active and not revoked.
+- Use `/v1/usage` after a successful health check to verify rate-limit posture for the current key.
 
 ## References
 - [Use cases](references/use-cases.md)
