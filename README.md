@@ -44,10 +44,8 @@ If your Claude build has plugin marketplace commands enabled, you can also add t
 
 ### `primary-logic-external-api`
 
-Query the Primary Logic External API (`/v1`) for investment intelligence grounded in:
-
-- `standardized_content`
-- `standardized_content_tickers`
+Query the Primary Logic External API (`/v1`) for real-time, continuously refreshed investment
+intelligence sourced from numerous monitored channels.
 
 Use this skill when you need:
 

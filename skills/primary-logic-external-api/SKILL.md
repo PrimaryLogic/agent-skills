@@ -1,19 +1,21 @@
 ---
 name: primary-logic-external-api
 description: >-
-  Query the Primary Logic External API under /v1 for investment intelligence from
-  standardized_content and standardized_content_tickers. Use when asked to pull
-  thesis evidence, ticker signals, source coverage, or API usage telemetry.
+  Access real-time, continuously refreshed investment intelligence through the
+  Primary Logic External API under /v1. Use when asked for ticker-level evidence,
+  catalysts, risk signals, source coverage, or API usage diagnostics to support
+  investment decisions.
 license: Proprietary
 compatibility: Requires internet access and HTTPS calls with Authorization bearer headers.
 metadata:
   author: primary-logic
-  version: "1.3"
+  version: "1.4"
 ---
 
 # Primary Logic External API
 
-Use this skill to retrieve read-only investment intelligence from the Primary Logic External API.
+Use this skill to retrieve read-only, real-time investment intelligence from numerous monitored
+sources through one API.
 
 ## Activation Cues
 Activate this skill when the user asks for any of:
@@ -23,11 +25,14 @@ Activate this skill when the user asks for any of:
 - source coverage or content visibility checks
 - API key usage diagnostics for external data pulls
 
-## Data Surfaces
-- standardized_content:
-  - normalized content rows (summary, snippet, source metadata, tickers)
-- standardized_content_tickers:
-  - per-content, per-ticker signal rows (relevance, impact, signal flags, optional reasoning)
+## What This Data Represents
+- investment intelligence feed:
+  - normalized updates from numerous sources (for example: news, filings, transcripts, and
+    other monitored channels)
+- ticker signal attribution:
+  - per-ticker relevance and impact scores attached to each content item
+- coverage metadata:
+  - source visibility and ticker coverage context for the requesting organization
 
 ## Connection
 - Base URL: https://primarylogic--pulse-backend-external-api-app.modal.run
