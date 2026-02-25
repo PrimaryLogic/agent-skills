@@ -1,21 +1,22 @@
 ---
 name: primary-logic-external-api
 description: >-
-  Access real-time, continuously refreshed investment intelligence through the
-  Primary Logic External API under /v1. Use when asked for ticker-level evidence,
-  catalysts, risk signals, source coverage, or API usage diagnostics to support
-  investment decisions.
+  Access real-time, continuously refreshed investment context through the
+  Primary Logic External API under /v1. Use when asked to power Codex, Claude
+  Code, OpenClaw, or custom agents with ticker-level evidence, catalysts, risk
+  signals, source coverage, and diagnostics for decision support or
+  user-controlled trading workflows.
 license: Proprietary
 compatibility: Requires internet access and HTTPS calls with Authorization bearer headers.
 metadata:
   author: primary-logic
-  version: "1.4"
+  version: "1.5"
 ---
 
 # Primary Logic External API
 
-Use this skill to retrieve read-only, real-time investment intelligence from numerous monitored
-sources through one API.
+Use this skill to retrieve read-only, real-time investment context from extensive monitored sources
+through one API.
 
 ## Activation Cues
 Activate this skill when the user asks for any of:
@@ -24,15 +25,13 @@ Activate this skill when the user asks for any of:
 - per-content relevance or impact details by ticker
 - source coverage or content visibility checks
 - API key usage diagnostics for external data pulls
+- setup help for agentic decision support or user-controlled trading workflows
 
 ## What This Data Represents
-- investment intelligence feed:
-  - normalized updates from numerous sources (for example: news, filings, transcripts, and
-    other monitored channels)
-- ticker signal attribution:
-  - per-ticker relevance and impact scores attached to each content item
-- coverage metadata:
-  - source visibility and ticker coverage context for the requesting organization
+- Investment context feed: normalized updates from numerous monitored sources (for example: news,
+  filings, transcripts, and other monitored channels)
+- Ticker signal attribution: per-ticker relevance and impact scores attached to each content item
+- Coverage metadata: source visibility and ticker coverage context for the requesting organization
 
 ## Connection
 - Base URL: https://primarylogic--pulse-backend-external-api-app.modal.run
@@ -46,6 +45,8 @@ Activate this skill when the user asks for any of:
 - If an API call fails, report status, error code or message, and a concrete next step.
 - Use absolute timestamps in outputs when the user asks about recent windows.
 - Do not claim market prices, positions, or execution events unless explicitly present in the API data.
+- Do not present outputs as guaranteed returns or autonomous execution instructions.
+- Keep user control explicit: frame outputs as context for decision support and user-approved actions.
 
 ## Input Contract
 Interpret each user request into this query plan:
@@ -64,7 +65,8 @@ Interpret each user request into this query plan:
    - limit (default 50)
    - sort mode: date|abs_impact|relevance
 
-If ticker or time window is missing for an investment decision request, ask one concise clarification.
+If ticker or time window is missing for an investment decision or trading workflow request, ask one
+concise clarification.
 
 ## Query Defaults
 - Default content limit: 50 unless user asks otherwise.
