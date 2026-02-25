@@ -13,7 +13,7 @@ curl -s -H "Authorization: Bearer $KEY" \
 ## 2) Ticker-First Ranked Pull
 ```bash
 curl -s -H "Authorization: Bearer $KEY" \
-  "$BASE/v1/tickers/NVDA/content?min_relevance=0.6&min_abs_impact=5&sort_by=abs_impact&sort_direction=desc"
+  "$BASE/v1/tickers/NVDA/content?since=2026-02-24T00:00:00Z&limit=50&min_relevance=0.6&min_abs_impact=5&sort_by=abs_impact&sort_direction=desc"
 ```
 
 ## 3) Per-Content Signal Attribution
@@ -36,4 +36,10 @@ while [ "$CURSOR" != "null" ]; do
   echo "$RESP" | jq '.data | length'
   CURSOR=$(echo "$RESP" | jq '.next_cursor')
 done
+```
+
+## Billing + Key Health Diagnostics
+```bash
+curl -s -H "Authorization: Bearer $KEY" "$BASE/v1/health"
+curl -s -H "Authorization: Bearer $KEY" "$BASE/v1/usage"
 ```
