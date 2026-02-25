@@ -6,6 +6,14 @@ These skills help AI agents query Primary Logic's external investment intelligen
 
 ## Installation
 
+### Prerequisites
+
+Before installing and using these skills:
+
+1. Log in at [primarylogic.com](https://www.primarylogic.com).
+2. Open the Primary Logic dashboard and create an API key from **Settings -> API Keys**.
+3. Keep that key available to set `Authorization: Bearer <PRIMARYLOGIC_API_KEY>` in your agent runtime.
+
 ### Install from GitHub (tested)
 
 ```bash
