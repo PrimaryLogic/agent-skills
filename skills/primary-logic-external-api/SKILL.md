@@ -3,9 +3,10 @@ name: primary-logic-external-api
 description: >-
   Access real-time, continuously refreshed investment context through the
   Primary Logic External API under /v1. Use when asked to power Codex, Claude
-  Code, OpenClaw, or custom agents with ticker-level evidence, catalysts, risk
-  signals, source coverage, and diagnostics for decision support or
-  user-controlled trading workflows.
+  Code, OpenClaw, or custom agents with LLM-ranked relevance and impact signals
+  from podcasts, articles and news, X/Twitter, Kalshi, Polymarket, earnings
+  calls, filings, and other monitored sources across public and private
+  companies for decision support or user-controlled trading workflows.
 license: Proprietary
 compatibility: Requires internet access and HTTPS calls with Authorization bearer headers.
 metadata:
@@ -16,7 +17,7 @@ metadata:
 # Primary Logic External API
 
 Use this skill to retrieve read-only, real-time investment context from extensive monitored sources
-through one API.
+through one API, including LLM-ranked relevance and impact signals for public and private companies.
 
 ## Activation Cues
 Activate this skill when the user asks for any of:
@@ -28,10 +29,12 @@ Activate this skill when the user asks for any of:
 - setup help for agentic decision support or user-controlled trading workflows
 
 ## What This Data Represents
-- Investment context feed: normalized updates from numerous monitored sources (for example: news,
-  filings, transcripts, and other monitored channels)
-- Ticker signal attribution: per-ticker relevance and impact scores attached to each content item
-- Coverage metadata: source visibility and ticker coverage context for the requesting organization
+- Source-normalized investment context: top podcasts, articles/news, X/Twitter, Kalshi, Polymarket,
+  earnings calls, filings, and other monitored channels normalized into one feed
+- LLM-heavy signal extraction: per-ticker relevance and impact scores attached to each content item
+  to prioritize material developments
+- Public + private company coverage: source visibility and ticker or company coverage context for the
+  requesting organization
 
 ## Connection
 - Base URL: https://primarylogic--pulse-backend-external-api-app.modal.run
