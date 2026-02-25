@@ -12,8 +12,14 @@
 
 ## Catalyst Discovery
 - Identify new high-signal developments with relevance + abs impact thresholds.
-- Track multi-source confirmation using source_types filters.
+- Track multi-source confirmation using source_types filters across podcasts, articles/news,
+  X/Twitter, Kalshi, Polymarket, and earnings-call coverage.
 - Trigger agent alerts when catalyst strength or direction shifts materially.
+
+## Source and Pipeline Coverage
+- Use LLM-heavy relevance and impact pipelines to compare source-level evidence quality.
+- Blend public-company ticker context with private-company updates where available.
+- Require cross-source corroboration before moving from assistant output to execution planning.
 
 ## Coverage Diagnostics
 - Distinguish mention-only coverage from scored signal coverage.
@@ -23,4 +29,5 @@
 ## Agentic Trading Assistant Workflows
 - Run recurring ticker-first pulls for watchlists.
 - Store request_id and filter bundle in logs for reproducibility.
-- Feed validated API outputs into user-controlled trade-planning or paper-trading pipelines.
+- Feed validated, LLM-ranked API outputs into user-controlled trade-planning or paper-trading
+  pipelines.
