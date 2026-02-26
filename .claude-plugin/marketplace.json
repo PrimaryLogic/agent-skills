@@ -10,7 +10,7 @@
   },
   "plugins": [
     {
-      "name": "primary-logic-external-api",
+      "name": "Primary Logic",
       "description": "Query Primary Logic's investment intelligence API for ticker-specific bull/bear evidence, catalyst/risk signals, source coverage, and per-content ticker attribution.",
       "source": "./",
       "strict": false,
