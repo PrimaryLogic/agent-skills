@@ -39,7 +39,7 @@ npx skills add PrimaryLogic/agent-skills --agent claude-code --skill '*' -y --co
 
 ## MCP Integration
 
-> If you need to check which tools are connected, see [CONNECTORS.md](plugin/CONNECTORS.md).
+> If you need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
 
 The plugin includes a remote MCP server (`.mcp.json`) that provides structured tools for querying investment data. Set `PRIMARYLOGIC_API_KEY` in your environment and the connector authenticates automatically.
 
@@ -69,19 +69,15 @@ The plugin includes a remote MCP server (`.mcp.json`) that provides structured t
 ```text
 agent-skills/
 ├── .claude-plugin/
-│   └── marketplace.json          # Marketplace manifest (points to plugin/)
-├── plugin/                       # Cowork plugin (MCP-only skill)
-│   ├── .claude-plugin/plugin.json
-│   ├── .mcp.json
-│   ├── CONNECTORS.md
-│   └── skills/
-│       └── investment-intelligence/
-│           └── SKILL.md
-├── skills/                       # npx skills add (all skills)
-│   ├── investment-intelligence/
-│   │   └── SKILL.md
-│   └── primary-logic-external-api/
-│       ├── SKILL.md
-│       └── references/
-└── README.md
+│   ├── marketplace.json
+│   └── plugin.json
+├── .mcp.json
+├── CONNECTORS.md
+├── README.md
+└── skills/
+    ├── investment-intelligence/
+    │   └── SKILL.md
+    └── primary-logic-external-api/
+        ├── SKILL.md
+        └── references/
 ```

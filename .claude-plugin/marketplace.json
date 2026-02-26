@@ -11,7 +11,7 @@
     {
       "name": "primary-logic",
       "description": "Query Primary Logic's investment intelligence API for ticker-specific bull/bear evidence, catalyst/risk signals, source coverage, and per-content ticker attribution.",
-      "source": "./plugin"
+      "source": "./"
     }
   ]
 }
