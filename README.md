@@ -1,27 +1,33 @@
 # Primary Logic Investment Intelligence Plugin
 
-An investment intelligence plugin for [Claude Code](https://claude.ai/code) and [Cowork](https://claude.com/product/cowork). Provides real-time, LLM-ranked signals from podcasts, articles, X/Twitter, prediction markets, earnings calls, filings, and other monitored sources across public and private companies.
+An investment intelligence plugin for AI coding agents. Provides real-time, LLM-ranked signals from podcasts, articles, X/Twitter, prediction markets, earnings calls, filings, and other monitored sources across public and private companies.
 
 > **Important**: This plugin provides investment context for decision support. All outputs should be reviewed by qualified professionals before use in investment decisions.
 
 ## Installation
 
-### Claude Code Plugin
+### Claude Code / Cowork (recommended)
 
 ```bash
 claude plugins add PrimaryLogic/agent-skills
 ```
 
-### npx (Agent Skills)
+### Codex
+
+```bash
+codex mcp add primary-logic --url https://primarylogic--pulse-backend-external-api-app.modal.run/mcp
+```
+
+### Other MCP-capable agents
+
+Add to your agent's MCP config:
+- URL: `https://primarylogic--pulse-backend-external-api-app.modal.run/mcp`
+- Auth: OAuth (automatic) or Bearer token with API key
+
+### npx (universal)
 
 ```bash
 npx skills add PrimaryLogic/agent-skills
-```
-
-Or install directly into Claude Code:
-
-```bash
-npx skills add PrimaryLogic/agent-skills --agent claude-code --skill '*' -y --copy
 ```
 
 ## Prerequisites
@@ -30,20 +36,11 @@ npx skills add PrimaryLogic/agent-skills --agent claude-code --skill '*' -y --co
 2. Ensure you have an active API-tier subscription.
 3. Create an API key from **Settings -> API Keys** in the dashboard.
 
-## Skills
-
-| Skill | Description |
-|-------|-------------|
-| `investment-intelligence` | MCP-powered investment context — ticker-specific bull/bear evidence, catalyst/risk signals, source coverage, and per-content ticker attribution via structured MCP tools |
-| `primary-logic-external-api` | Raw HTTP API reference for the `/v1` endpoints — use for non-MCP agents or direct API integration |
-
-## MCP Integration
+## MCP Tools
 
 > If you need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
 
-The plugin includes a remote MCP server (`.mcp.json`) that provides structured tools for querying investment data. Set `PRIMARYLOGIC_API_KEY` in your environment and the connector authenticates automatically.
-
-### Available MCP Tools
+The plugin includes a remote MCP server (`.mcp.json`) that provides structured tools for querying investment data. Authentication is handled automatically via OAuth or API key.
 
 | Tool | Purpose |
 |------|---------|
@@ -62,7 +59,7 @@ The plugin includes a remote MCP server (`.mcp.json`) that provides structured t
 - `Build a bull and bear case for NVDA from the last 7 days with the highest-impact evidence first.`
 - `Show contradictory evidence for MSFT with relevance >= 0.6 and abs impact >= 5.`
 - `Check whether my org has source coverage gaps for AMD-related content.`
-- `Diagnose why my external API key is not returning ticker signals.`
+- `Diagnose why my API key is not returning ticker signals.`
 
 ## Repository Structure
 
@@ -75,9 +72,6 @@ agent-skills/
 ├── CONNECTORS.md
 ├── README.md
 └── skills/
-    ├── investment-intelligence/
-    │   └── SKILL.md
-    └── primary-logic-external-api/
-        ├── SKILL.md
-        └── references/
+    └── primary-logic/
+        └── SKILL.md
 ```

@@ -1,5 +1,5 @@
 ---
-name: investment-intelligence
+name: primary-logic
 description: >-
   Real-time investment context from Primary Logic — LLM-ranked relevance and
   impact signals from podcasts, articles, X/Twitter, Kalshi, Polymarket,
@@ -8,13 +8,39 @@ description: >-
 license: Proprietary
 metadata:
   author: Primary Logic
-  version: "1.7"
+  version: "1.8"
 ---
 
 # Primary Logic Investment Intelligence
 
 Use the Primary Logic MCP tools to retrieve real-time, continuously refreshed investment context
 with LLM-ranked relevance and impact signals for public and private companies.
+
+## Setup
+
+### Claude Code / Cowork (recommended)
+
+```bash
+claude plugins add PrimaryLogic/agent-skills
+```
+
+### Codex
+
+```bash
+codex mcp add primary-logic --url https://primarylogic--pulse-backend-external-api-app.modal.run/mcp
+```
+
+### Other MCP-capable agents
+
+Add to your agent's MCP config:
+- URL: `https://primarylogic--pulse-backend-external-api-app.modal.run/mcp`
+- Auth: OAuth (automatic) or Bearer token with API key
+
+### npx (universal)
+
+```bash
+npx skills add PrimaryLogic/agent-skills
+```
 
 ## Activation Cues
 

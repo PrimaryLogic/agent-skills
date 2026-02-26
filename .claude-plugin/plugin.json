@@ -1,6 +1,6 @@
 {
   "name": "primary-logic",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Access real-time investment context with LLM-ranked relevance and impact signals from podcasts, articles, X/Twitter, prediction markets, earnings calls, filings, and other monitored sources across public and private companies.",
   "author": {
     "name": "Primary Logic"
