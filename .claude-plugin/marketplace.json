@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "primary-logic-agent-skills",
+  "version": "1.7.0",
+  "description": "Access real-time investment context with LLM-ranked relevance and impact signals from podcasts, articles, X/Twitter, prediction markets, earnings calls, filings, and other monitored sources across public and private companies.",
+  "owner": {
+    "name": "Primary Logic",
+    "email": "support@primarylogic.com"
+  },
+  "plugins": [
+    {
+      "name": "primary-logic",
+      "description": "Query Primary Logic's investment intelligence API for ticker-specific bull/bear evidence, catalyst/risk signals, source coverage, and per-content ticker attribution.",
+      "source": "./"
+    }
+  ]
+}
