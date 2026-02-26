@@ -33,21 +33,24 @@ This installs skills under:
 ./.claude/skills/
 ```
 
+### Install from a local checkout (monorepo)
+
+From the Primary Logic monorepo root:
+
+```bash
+npx skills add ./external/agent-skills --agent claude-code --skill '*' -y --copy
+```
+
 ### Verify available skills before install
 
 ```bash
 npx skills add PrimaryLogic/agent-skills -l
 ```
 
-## Claude Code Plugin Compatibility
+## Claude Code Note
 
-This repository follows the Agent Skills standard and is compatible with Claude Code skill installation through the `skills` CLI.
-
-If your Claude build has plugin marketplace commands enabled, you can also add this repo via Claude plugin flows similar to:
-
-```text
-/plugin marketplace add PrimaryLogic/agent-skills
-```
+This repository is currently distributed as an **Agent Skills** package.
+Use the `skills` CLI install commands above.
 
 ## Available Skills
 
