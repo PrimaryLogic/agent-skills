@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "primary-logic": {
+      "type": "remote",
+      "url": "https://primarylogic--pulse-backend-external-api-app.modal.run/mcp"
+    }
+  }
+}

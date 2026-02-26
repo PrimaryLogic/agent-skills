@@ -11,9 +11,15 @@ These skills help AI agents query Primary Logic's external investment intelligen
 Before installing and using these skills:
 
 1. Log in at [primarylogic.com](https://www.primarylogic.com).
-2. Open the Primary Logic dashboard and create an API key from **Settings -> API Keys**.
-3. Ensure the API key creator has an active API-tier subscription (user-level entitlement).
-4. Keep that key available to set `Authorization: Bearer <PRIMARYLOGIC_API_KEY>` in your agent runtime.
+2. Ensure you have an active API-tier subscription (user-level entitlement).
+
+### MCP Server (Recommended — Claude Code)
+
+This package includes a remote MCP server (`.mcp.json`) that authenticates via OAuth — no API key management needed. Claude Code discovers it automatically when installed as a plugin. On first use, you'll be redirected to log in via your existing Primary Logic account.
+
+### API Key (Alternative)
+
+For non-MCP agents, create an API key from **Settings -> API Keys** in the dashboard and set `Authorization: Bearer <PRIMARYLOGIC_API_KEY>` in your agent runtime.
 
 ### Install from GitHub (tested)
 
@@ -47,10 +53,17 @@ npx skills add ./external/agent-skills --agent claude-code --skill '*' -y --copy
 npx skills add PrimaryLogic/agent-skills -l
 ```
 
-## Claude Code Note
+### Install as Claude Plugin
 
-This repository is currently distributed as an **Agent Skills** package.
-Use the `skills` CLI install commands above.
+```bash
+claude plugin install primary-logic-agent-skills --url https://github.com/PrimaryLogic/agent-skills
+```
+
+Or for local development from the monorepo:
+
+```bash
+claude --plugin-dir ./external/agent-skills
+```
 
 ## Available Skills
 
@@ -85,6 +98,9 @@ Primary references included:
 
 ```text
 agent-skills/
+├── .claude-plugin/
+│   └── plugin.json
+├── .mcp.json              # Remote MCP server (OAuth-authenticated)
 ├── README.md
 └── skills/
     └── primary-logic-external-api/

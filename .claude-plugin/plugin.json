@@ -1,0 +1,13 @@
+{
+  "name": "primary-logic-agent-skills",
+  "version": "1.6.0",
+  "description": "Access real-time investment context through Primary Logic's External API with LLM-ranked relevance and impact signals.",
+  "author": {
+    "name": "Primary Logic",
+    "url": "https://www.primarylogic.com"
+  },
+  "homepage": "https://www.primarylogic.com",
+  "repository": "https://github.com/PrimaryLogic/agent-skills",
+  "license": "Proprietary",
+  "keywords": ["investment", "api", "trading", "finance", "signals"]
+}
