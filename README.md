@@ -53,10 +53,11 @@ npx skills add ./external/agent-skills --agent claude-code --skill '*' -y --copy
 npx skills add PrimaryLogic/agent-skills -l
 ```
 
-### Add MCP server to Claude Code
+### Claude Code Plugin
 
 ```bash
-claude mcp add primary-logic --url https://primarylogic--pulse-backend-external-api-app.modal.run/mcp
+/plugin marketplace add PrimaryLogic/agent-skills
+/plugin install primary-logic-external-api@primary-logic-agent-skills
 ```
 
 Or for local development from the monorepo:
@@ -99,7 +100,7 @@ Primary references included:
 ```text
 agent-skills/
 ├── .claude-plugin/
-│   └── plugin.json
+│   └── marketplace.json
 ├── .mcp.json              # Remote MCP server (OAuth-authenticated)
 ├── README.md
 └── skills/

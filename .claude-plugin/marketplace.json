@@ -1,0 +1,20 @@
+{
+  "name": "primary-logic-agent-skills",
+  "owner": {
+    "name": "Primary Logic",
+    "email": "support@primarylogic.com"
+  },
+  "metadata": {
+    "description": "Access real-time investment context through Primary Logic's External API with LLM-ranked relevance and impact signals.",
+    "version": "1.6.0"
+  },
+  "plugins": [
+    {
+      "name": "primary-logic-external-api",
+      "description": "Query Primary Logic's investment intelligence API for ticker-specific bull/bear evidence, catalyst/risk signals, source coverage, and per-content ticker attribution.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/primary-logic-external-api"]
+    }
+  ]
+}
