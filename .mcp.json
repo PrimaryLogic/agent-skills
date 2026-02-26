@@ -1,6 +1,9 @@
 {
   "primary-logic": {
     "type": "http",
-    "url": "https://primarylogic--pulse-backend-external-api-app.modal.run/mcp"
+    "url": "https://primarylogic--pulse-backend-external-api-app.modal.run/mcp",
+    "headers": {
+      "Authorization": "Bearer ${PRIMARYLOGIC_API_KEY}"
+    }
   }
 }
