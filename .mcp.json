@@ -1,8 +1,6 @@
 {
-  "mcpServers": {
-    "primary-logic": {
-      "type": "http",
-      "url": "https://primarylogic--pulse-backend-external-api-app.modal.run/mcp"
-    }
+  "primary-logic": {
+    "type": "http",
+    "url": "https://primarylogic--pulse-backend-external-api-app.modal.run/mcp"
   }
 }
