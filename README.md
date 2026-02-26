@@ -1,92 +1,61 @@
-# Primary Logic Agent Skills
+# Primary Logic Investment Intelligence Plugin
 
-Production-ready [Agent Skills](https://agentskills.io/) for Primary Logic workflows.
+An investment intelligence plugin for [Claude Code](https://claude.ai/code) and [Cowork](https://claude.com/product/cowork). Provides real-time, LLM-ranked signals from podcasts, articles, X/Twitter, prediction markets, earnings calls, filings, and other monitored sources across public and private companies.
 
-These skills help AI agents query Primary Logic's external investment intelligence API safely and consistently, with explicit input/output contracts and reusable references.
+> **Important**: This plugin provides investment context for decision support. All outputs should be reviewed by qualified professionals before use in investment decisions.
 
 ## Installation
 
-### Prerequisites
+### Claude Code Plugin
 
-Before installing and using these skills:
+```bash
+claude plugins add PrimaryLogic/agent-skills
+```
 
-1. Log in at [primarylogic.com](https://www.primarylogic.com).
-2. Ensure you have an active API-tier subscription (user-level entitlement).
-
-### MCP Server (Recommended — Claude Code)
-
-This package includes a remote MCP server (`.mcp.json`) that authenticates via OAuth — no API key management needed. Claude Code discovers it automatically when installed as a plugin. On first use, you'll be redirected to log in via your existing Primary Logic account.
-
-### API Key (Alternative)
-
-For non-MCP agents, create an API key from **Settings -> API Keys** in the dashboard and set `Authorization: Bearer <PRIMARYLOGIC_API_KEY>` in your agent runtime.
-
-### Install from GitHub (tested)
+### npx (Agent Skills)
 
 ```bash
 npx skills add PrimaryLogic/agent-skills
 ```
 
-### Install directly into Claude Code (tested)
+Or install directly into Claude Code:
 
 ```bash
 npx skills add PrimaryLogic/agent-skills --agent claude-code --skill '*' -y --copy
 ```
 
-This installs skills under:
+## Prerequisites
 
-```text
-./.claude/skills/
-```
+1. Log in at [primarylogic.com](https://www.primarylogic.com).
+2. Ensure you have an active API-tier subscription.
+3. Create an API key from **Settings -> API Keys** in the dashboard.
 
-### Install from a local checkout (monorepo)
+## Skills
 
-From the Primary Logic monorepo root:
+| Skill | Description |
+|-------|-------------|
+| `investment-intelligence` | MCP-powered investment context — ticker-specific bull/bear evidence, catalyst/risk signals, source coverage, and per-content ticker attribution via structured MCP tools |
+| `primary-logic-external-api` | Raw HTTP API reference for the `/v1` endpoints — use for non-MCP agents or direct API integration |
 
-```bash
-npx skills add ./external/agent-skills --agent claude-code --skill '*' -y --copy
-```
+## MCP Integration
 
-### Verify available skills before install
+> If you need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
 
-```bash
-npx skills add PrimaryLogic/agent-skills -l
-```
+The plugin includes a remote MCP server (`.mcp.json`) that provides structured tools for querying investment data. Set `PRIMARYLOGIC_API_KEY` in your environment and the connector authenticates automatically.
 
-### Claude Code Plugin
+### Available MCP Tools
 
-```bash
-/plugin marketplace add PrimaryLogic/agent-skills
-/plugin install primary-logic-external-api@primary-logic-agent-skills
-```
-
-Or for local development from the monorepo:
-
-```bash
-claude --plugin-dir ./external/agent-skills
-```
-
-## Available Skills
-
-### `primary-logic-external-api`
-
-Query the Primary Logic External API (`/v1`) for real-time, continuously refreshed investment
-intelligence sourced from numerous monitored channels.
-
-Use this skill when you need:
-
-- ticker-specific bull or bear evidence
-- catalyst/risk signal scans
-- source coverage diagnostics
-- per-content ticker attribution
-- API usage and access diagnostics
-
-Primary references included:
-
-- `references/use-cases.md`
-- `references/api-recipes.md`
-- `references/response-contracts.md`
-- `references/validation.md`
+| Tool | Purpose |
+|------|---------|
+| `health_check` | Validate connectivity and auth |
+| `search_content` | Broad content discovery with filters (tickers, sources, sentiment, time) |
+| `get_content` | Fetch a single content item by ID |
+| `get_content_ticker_signals` | Per-item ticker attribution with relevance and impact |
+| `get_ticker_content` | Signal-ranked content for a specific ticker |
+| `list_sources` | Org source visibility and coverage |
+| `list_tickers` | Search available tickers |
+| `get_ticker_detail` | Ticker summary with optional signal stats |
+| `get_usage` | API usage telemetry |
 
 ## Example Usage Prompts
 
@@ -100,10 +69,13 @@ Primary references included:
 ```text
 agent-skills/
 ├── .claude-plugin/
-│   └── marketplace.json
-├── .mcp.json              # Remote MCP server (OAuth-authenticated)
+│   └── plugin.json
+├── .mcp.json
+├── CONNECTORS.md
 ├── README.md
 └── skills/
+    ├── investment-intelligence/
+    │   └── SKILL.md
     └── primary-logic-external-api/
         ├── SKILL.md
         └── references/
@@ -111,18 +83,4 @@ agent-skills/
             ├── response-contracts.md
             ├── use-cases.md
             └── validation.md
-```
-
-## Validation
-
-Validate a skill locally with `skills-ref`:
-
-```bash
-skills-ref validate ./skills/primary-logic-external-api
-```
-
-Or quickly check repository discoverability:
-
-```bash
-npx skills add PrimaryLogic/agent-skills -l
 ```
