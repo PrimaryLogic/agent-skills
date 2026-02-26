@@ -73,5 +73,9 @@ agent-skills/
 ├── README.md
 └── skills/
     └── primary-logic/
-        └── SKILL.md
+        ├── SKILL.md
+        └── references/
+            ├── api-recipes.md
+            ├── response-contracts.md
+            └── use-cases.md
 ```

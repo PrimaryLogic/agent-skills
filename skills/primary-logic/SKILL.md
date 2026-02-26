@@ -46,10 +46,11 @@ npx skills add PrimaryLogic/agent-skills
 
 Activate this skill when the user asks for any of:
 - ticker-specific bullish or bearish evidence
-- recent catalysts or risk signals
+- recent catalysts or risk signals from content
 - per-content relevance or impact details by ticker
 - source coverage or content visibility checks
-- usage diagnostics
+- API key usage diagnostics
+- setup help for agentic decision support or user-controlled trading workflows
 
 ## What This Data Represents
 
@@ -59,6 +60,12 @@ Activate this skill when the user asks for any of:
   to prioritize material developments
 - Public + private company coverage: source visibility and ticker coverage for the requesting
   organization
+
+## Connection
+
+- MCP server: `primary-logic` connector
+- Base URL: `https://primarylogic--pulse-backend-external-api-app.modal.run/mcp`
+- Auth: Bearer token via `PRIMARYLOGIC_API_KEY` environment variable
 
 ## Available MCP Tools
 
@@ -79,6 +86,8 @@ Use the `primary-logic` connector tools:
 ## Hard Rules
 
 - Never fabricate data; all claims must map to tool responses.
+- Access is user-entitlement scoped to the API key creator; if calls fail with billing errors,
+  key-owner subscription status is usually the cause.
 - Data visibility is org-scoped; if records are missing, org source visibility may be the cause.
 - If a tool call fails, report the error and suggest a concrete next step.
 - Use absolute timestamps in outputs when the user asks about recent windows.
@@ -98,15 +107,27 @@ Interpret each user request into this query plan:
    - min_relevance: 0..1
    - min_abs_impact: 0..10
    - sentiment: positive | negative | neutral
+   - include_reasoning: true when the user asks why
 4. retrieval:
    - limit (default 50)
    - sort mode: date | abs_impact | relevance
 
 If ticker or time window is missing for an investment query, ask one concise clarification.
 
+## Query Defaults
+
+- Default content limit: 50 unless user asks otherwise.
+- Apply ticker filters whenever the user names tickers.
+- For larger pulls, continue pagination while next_cursor is present.
+- For signal-heavy tasks, start with min_relevance >= 0.6 and min_abs_impact >= 5.
+
+## Data Shape
+
+See [response contracts](references/response-contracts.md) for canonical payload examples.
+
 ## Decision Workflow
 
-1. Validate connectivity with `health_check`.
+1. Validate connectivity once per session with `health_check`.
 2. Use `search_content` for broad discovery pulls.
 3. Use `get_ticker_content` for signal-ranked ticker analysis.
 4. Use `get_content_ticker_signals` for per-item attribution detail.
@@ -120,14 +141,25 @@ Return structured investment output with:
 1. key_findings: 3 to 7 concise bullets
 2. thesis_view: one short paragraph
 3. supporting_evidence: list of {content_id, ticker, impact_score, relevance_score}
-4. contrary_evidence: same schema
+4. contrary_evidence: same schema as supporting_evidence
 5. catalysts: list
 6. risks: list
+7. tool_trace:
+   - tools used
+   - filters applied
+   - time window
+   - pagination coverage
 
-If results are empty, return "no qualifying records" and suggest which filter to relax first.
+If results are empty, return "no qualifying records" and suggest exactly which filter to relax first.
 
-## Query Defaults
+## Billing Troubleshooting
 
-- Default content limit: 50 unless user asks otherwise.
-- Apply ticker filters whenever the user names tickers.
-- For signal-heavy tasks, start with min_relevance >= 0.6 and min_abs_impact >= 5.
+- If `health_check` returns a 402 error, check key-owner subscription entitlement first
+  (user-level access), then confirm the key is active and not revoked.
+- Use `get_usage` after a successful health check to verify rate-limit posture for the current key.
+
+## References
+
+- [Use cases](references/use-cases.md)
+- [API recipes](references/api-recipes.md)
+- [Response contracts](references/response-contracts.md)
