@@ -6,11 +6,30 @@ An investment intelligence plugin for AI coding agents. Provides real-time, LLM-
 
 ## Installation
 
-### Claude Code / Cowork (recommended)
+### Cowork
+
+1. Open **Manage Plugins**.
+2. Click **Personal** -> **Add a Marketplace from GitHub**.
+3. Enter `PrimaryLogic/agent-skills`.
+4. Install the plugin, click **Manage**, then connect the `primary-logic` connector.
+5. Run `/primary-logic give me an update about NVDA`.
+6. If prompted, complete OAuth.
+
+### OpenClaw
+
+Paste this into OpenClaw:
+```text
+Install the plugin https://github.com/PrimaryLogic/agent-skills and run the Oauth flow
+```
+
+### Claude Code
 
 ```bash
-claude plugins add PrimaryLogic/agent-skills
+claude plugin marketplace add PrimaryLogic/agent-skills
+claude plugin install primary-logic
 ```
+
+Claude prompts for OAuth automatically on first tool call.
 
 ### Codex
 
@@ -33,8 +52,8 @@ npx skills add PrimaryLogic/agent-skills
 ## Prerequisites
 
 1. Log in at [primarylogic.com](https://www.primarylogic.com).
-2. Ensure you have an active API-tier subscription.
-3. Complete OAuth setup from **Settings -> API Keys** (OAuth setup page).
+2. Ensure you have an active Automation-tier subscription.
+3. Complete OAuth setup from **Settings -> OAuth** (`/api-keys` route).
 
 ## MCP Tools
 

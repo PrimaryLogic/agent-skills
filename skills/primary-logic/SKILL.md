@@ -18,11 +18,30 @@ with LLM-ranked relevance and impact signals for public and private companies.
 
 ## Setup
 
-### Claude Code / Cowork (recommended)
+### Cowork
+
+1. Open **Manage Plugins**.
+2. Click **Personal** -> **Add a Marketplace from GitHub**.
+3. Enter `PrimaryLogic/agent-skills`.
+4. Install the plugin, click **Manage**, then connect the `primary-logic` connector.
+5. Run `/primary-logic give me an update about NVDA`.
+6. If prompted, complete OAuth.
+
+### OpenClaw
+
+Paste this into OpenClaw:
+```text
+Install the plugin https://github.com/PrimaryLogic/agent-skills and run the Oauth flow
+```
+
+### Claude Code
 
 ```bash
-claude plugins add PrimaryLogic/agent-skills
+claude plugin marketplace add PrimaryLogic/agent-skills
+claude plugin install primary-logic
 ```
+
+Claude prompts for OAuth automatically on first tool call.
 
 ### Codex
 
