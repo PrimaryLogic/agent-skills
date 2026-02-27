@@ -10,4 +10,7 @@ The Primary Logic MCP server provides real-time, LLM-ranked investment context f
 
 ## Authentication
 
-The connector authenticates via API key. Set `PRIMARYLOGIC_API_KEY` in your environment to your Primary Logic API key (available from **Settings -> API Keys** in the dashboard).
+The connector authenticates via OAuth only. Use the OAuth metadata endpoints and complete the auth flow in your MCP client:
+- `GET /.well-known/oauth-protected-resource`
+- `GET /.well-known/oauth-authorization-server`
+- `POST /oauth/token`
