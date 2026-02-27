@@ -34,7 +34,7 @@ codex mcp add primary-logic --url https://primarylogic--pulse-backend-external-a
 
 Add to your agent's MCP config:
 - URL: `https://primarylogic--pulse-backend-external-api-app.modal.run/mcp`
-- Auth: OAuth (automatic) or Bearer token with API key
+- Auth: OAuth only
 
 ### npx (universal)
 
@@ -49,7 +49,7 @@ Activate this skill when the user asks for any of:
 - recent catalysts or risk signals from content
 - per-content relevance or impact details by ticker
 - source coverage or content visibility checks
-- API key usage diagnostics
+- OAuth token usage diagnostics
 - setup help for agentic decision support or user-controlled trading workflows
 
 ## What This Data Represents
@@ -65,7 +65,7 @@ Activate this skill when the user asks for any of:
 
 - MCP server: `primary-logic` connector
 - Base URL: `https://primarylogic--pulse-backend-external-api-app.modal.run/mcp`
-- Auth: Bearer token via `PRIMARYLOGIC_API_KEY` environment variable
+- Auth: OAuth access token via MCP OAuth discovery (`/.well-known/oauth-authorization-server`)
 
 ## Available MCP Tools
 
@@ -86,8 +86,8 @@ Use the `primary-logic` connector tools:
 ## Hard Rules
 
 - Never fabricate data; all claims must map to tool responses.
-- Access is user-entitlement scoped to the API key creator; if calls fail with billing errors,
-  key-owner subscription status is usually the cause.
+- Access is user-entitlement scoped to token subject (`sub`); if calls fail with billing errors,
+  owner subscription status is usually the cause.
 - Data visibility is org-scoped; if records are missing, org source visibility may be the cause.
 - If a tool call fails, report the error and suggest a concrete next step.
 - Use absolute timestamps in outputs when the user asks about recent windows.
@@ -154,9 +154,9 @@ If results are empty, return "no qualifying records" and suggest exactly which f
 
 ## Billing Troubleshooting
 
-- If `health_check` returns a 402 error, check key-owner subscription entitlement first
-  (user-level access), then confirm the key is active and not revoked.
-- Use `get_usage` after a successful health check to verify rate-limit posture for the current key.
+- If `health_check` returns a 402 error, check token-owner subscription entitlement first
+  (user-level access), then confirm OAuth token scope includes `read:investment-intelligence`.
+- Use `get_usage` after a successful health check to verify rate-limit posture for the current OAuth principal.
 
 ## References
 

@@ -22,7 +22,7 @@ codex mcp add primary-logic --url https://primarylogic--pulse-backend-external-a
 
 Add to your agent's MCP config:
 - URL: `https://primarylogic--pulse-backend-external-api-app.modal.run/mcp`
-- Auth: OAuth (automatic) or Bearer token with API key
+- Auth: OAuth only (authorization_code + PKCE for interactive clients, client_credentials for user-owned bots)
 
 ### npx (universal)
 
@@ -34,13 +34,13 @@ npx skills add PrimaryLogic/agent-skills
 
 1. Log in at [primarylogic.com](https://www.primarylogic.com).
 2. Ensure you have an active API-tier subscription.
-3. Create an API key from **Settings -> API Keys** in the dashboard.
+3. Complete OAuth setup from **Settings -> API Keys** (OAuth setup page).
 
 ## MCP Tools
 
 > If you need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
 
-The plugin includes a remote MCP server (`.mcp.json`) that provides structured tools for querying investment data. Authentication is handled automatically via OAuth or API key.
+The plugin includes a remote MCP server (`.mcp.json`) that provides structured tools for querying investment data. Authentication is handled via OAuth.
 
 | Tool | Purpose |
 |------|---------|
@@ -59,7 +59,7 @@ The plugin includes a remote MCP server (`.mcp.json`) that provides structured t
 - `Build a bull and bear case for NVDA from the last 7 days with the highest-impact evidence first.`
 - `Show contradictory evidence for MSFT with relevance >= 0.6 and abs impact >= 5.`
 - `Check whether my org has source coverage gaps for AMD-related content.`
-- `Diagnose why my API key is not returning ticker signals.`
+- `Diagnose why my OAuth token is not returning ticker signals.`
 
 ## Repository Structure
 
